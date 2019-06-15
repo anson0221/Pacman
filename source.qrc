@@ -1,0 +1,34 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>material/d_Pacman_cl.png</file>
+        <file>material/d_Pacman_op.png</file>
+        <file>material/dot.png</file>
+        <file>material/l_Pacman_cl.png</file>
+        <file>material/l_Pacman_op.png</file>
+        <file>material/lG_ghost.png</file>
+        <file>material/lW_ghost.png</file>
+        <file>material/lY_ghost.png</file>
+        <file>material/Map.jpeg</file>
+        <file>material/Maze.jpeg</file>
+        <file>material/r_Pacman_op.png</file>
+        <file>material/rG_ghost.png</file>
+        <file>material/rW_ghost.png</file>
+        <file>material/rY_ghost.png</file>
+        <file>material/skeleton_1.png</file>
+        <file>material/skeleton_2.png</file>
+        <file>material/u_Pacman_cl.png</file>
+        <file>material/u_Pacman_op.png</file>
+        <file>material/Wall_Map.png</file>
+        <file>material/Wall_Maze.png</file>
+        <file>material/r_Pacman_cl.png</file>
+        <file>material/orange.png</file>
+        <file>material/pill.png</file>
+        <file>material/Map_2.jpeg</file>
+        <file>material/stop.png</file>
+        <file>material/stoppill.png</file>
+        <file>material/l_special.png</file>
+        <file>material/r_special.png</file>
+        <file>material/cheat.png</file>
+        <file>material/go.png</file>
+    </qresource>
+</RCC>
