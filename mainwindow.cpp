@@ -498,11 +498,6 @@ void MainWindow::GameJudge()
         ResetGame();
         return;
     }
-    /*if(score == DotNum - 1)
-    {
-        ResetGame();
-        return;
-    }*/
 
 
     if(pac->collidesWithItem(G_) == true && G_->isVisible() == 1 && p->getMode() == "N")
@@ -528,6 +523,13 @@ void MainWindow::GameJudge()
         ResetGame();
         return;
     }
+
+    if(pac->collidesWithItem(Sp_) == true && Sp_->isVisible() == 1 && p->getMode() == "N")
+    {
+        ResetGame();
+        return;
+    }
+
 
 
 
@@ -560,6 +562,14 @@ void MainWindow::GameJudge()
         Sk_->setVisible(0);
         Sk_->setPos(490, 349.5);
         s->setGame_0();
+        return;
+    }
+
+    if(pac->collidesWithItem(Sp_) == true && Sp_->isVisible() == 1 && p->getMode() == "S")
+    {
+        Sp_->setVisible(0);
+        Sp_->setPos(490, 349.5);
+        sp->setGame_0();
         return;
     }
 
