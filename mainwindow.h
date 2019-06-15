@@ -49,6 +49,7 @@ private:
     QString Direct_, MODE;
     Pacman *p;
     G_Ghost *g;
+    G_Ghost *fth_w, *fth_y, *fth_s, *fth_sp; //for Polymorphism
     W_Ghost *w;
     Y_Ghost *y;
     Skeleton *s;
@@ -58,7 +59,7 @@ private:
     QGraphicsPixmapItem *pill;
     QGraphicsPixmapItem *stop_pill;
 
-    int Lock = 0;
+    int Lock = 0; //to stop the game
     int T_Move = 80; //to control the velocity of Pacman with timer_2
     int T_Ghost = 80; //to control the velocity of Ghost with timer_3
     int DotNum = 0;
