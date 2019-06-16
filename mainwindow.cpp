@@ -107,6 +107,12 @@ MainWindow::MainWindow(QWidget *parent) :
     y = new Y_Ghost(Y_, g, w, s, i);
     sp = new Special(Sp_);
 
+    //to implement Polymorphism
+    fth_w = w;
+    fth_s = s;
+    fth_y = y;
+    fth_sp = sp;
+
 
     //let Ghost can keep moving
     timer_3 = new QTimer(this);
@@ -115,30 +121,30 @@ MainWindow::MainWindow(QWidget *parent) :
     g->setDirect(Direct_);
     Direct_ = "left";
 
-    w->setDirect(Direct_);
+    fth_w->setDirect(Direct_);
 
     if(i == 0 || i == 1)
     {
         Direct_ = "right";
-        y->setDirect(Direct_);
+        fth_y->setDirect(Direct_);
     }
     if(i == 2 ||i == 3)
     {
         Direct_ = "left";
-        y->setDirect(Direct_);
+        fth_y->setDirect(Direct_);
     }
 
     Direct_ = "left";
-    s->setDirect(Direct_);
+    fth_s->setDirect(Direct_);
 
     Direct_ = "right";
-    sp->setDirect(Direct_);
+    fth_sp->setDirect(Direct_);
 
     connect(timer_3, SIGNAL(timeout()), g, SLOT(moving()));
-    connect(timer_3, SIGNAL(timeout()), w, SLOT(moving()));
-    connect(timer_3, SIGNAL(timeout()), y, SLOT(moving()));
-    connect(timer_3, SIGNAL(timeout()), s, SLOT(moving()));
-    connect(timer_3, SIGNAL(timeout()), sp, SLOT(moving()));
+    connect(timer_3, SIGNAL(timeout()), fth_w, SLOT(moving()));
+    connect(timer_3, SIGNAL(timeout()), fth_y, SLOT(moving()));
+    connect(timer_3, SIGNAL(timeout()), fth_s, SLOT(moving()));
+    connect(timer_3, SIGNAL(timeout()), fth_sp, SLOT(moving()));
     timer_3->start(T_Ghost);
 
 
@@ -211,13 +217,13 @@ MainWindow::~MainWindow()
 void MainWindow::keyPressEvent(QKeyEvent *event) //to control the game
 {
     if(event->key() == Qt::Key_G)
-    {
+    {qDebug() << 1;
         p->setGame_1();
         g->setGame_1();
-        w->setGame_1();
-        y->setGame_1();
-        s->setGame_1();
-        sp->setGame_1();
+        fth_w->setGame_1();
+        fth_y->setGame_1();
+        fth_s->setGame_1();
+        fth_sp->setGame_1();
         return;
     }
 
@@ -227,10 +233,10 @@ void MainWindow::keyPressEvent(QKeyEvent *event) //to control the game
         {
             p->setGame_0();
             g->setGame_0();
-            w->setGame_0();
-            y->setGame_0();
-            s->setGame_0();
-            sp->setGame_0();
+            fth_w->setGame_0();
+            fth_y->setGame_0();
+            fth_s->setGame_0();
+            fth_sp->setGame_0();
 
             Lock = 1;
             return;
@@ -240,10 +246,10 @@ void MainWindow::keyPressEvent(QKeyEvent *event) //to control the game
         {
             p->setGame_1();
             g->setGame_1();
-            w->setGame_1();
-            y->setGame_1();
-            s->setGame_1();
-            sp->setGame_1();
+            fth_w->setGame_1();
+            fth_y->setGame_1();
+            fth_s->setGame_1();
+            fth_sp->setGame_1();
 
             Lock = 0;
             return;
@@ -349,10 +355,10 @@ void MainWindow::ResetGame()
     //let them be static
     p->setGame_0();
     g->setGame_0();
-    w->setGame_0();
-    y->setGame_0();
-    s->setGame_0();
-    sp->setGame_0();
+    fth_w->setGame_0();
+    fth_y->setGame_0();
+    fth_s->setGame_0();
+    fth_sp->setGame_0();
 
     pac->setPos(490, 432); //to initialize position & pixmap of Pacman
     pac->setPixmap(QPixmap(":/new/prefix1/material/d_Pacman_op.png").scaled(QSize(40, 40)));
@@ -390,24 +396,24 @@ void MainWindow::ResetGame()
     g->setDirect(Direct_);
 
     Direct_ = "left";
-    w->setDirect(Direct_);
+    fth_w->setDirect(Direct_);
 
     if(i == 0 || i == 1)
     {
         Direct_ = "right";
-        y->setDirect(Direct_);
+        fth_y->setDirect(Direct_);
     }
     if(i == 2 ||i == 3)
     {
         Direct_ = "left";
-        y->setDirect(Direct_);
+        fth_y->setDirect(Direct_);
     }
 
     Direct_ = "left";
-    s->setDirect(Direct_);
+    fth_s->setDirect(Direct_);
 
     Direct_ = "right";
-    sp->setDirect(Direct_);
+    fth_sp->setDirect(Direct_);
 
 
     //initialize the timer for all Ghosts
@@ -434,7 +440,6 @@ void MainWindow::ResetGame()
         if(dots.at(i)->collidesWithItem(stop_pill) == false)
         {
             dots.at(i)->setVisible(1);
-            //++backup;
         } else {
             dots.at(i)->setVisible(0);
         }
@@ -450,10 +455,10 @@ void MainWindow::START()
 {
     p->setGame_1();
     g->setGame_1();
-    w->setGame_1();
-    y->setGame_1();
-    s->setGame_1();
-    sp->setGame_1();
+    fth_w->setGame_1();
+    fth_y->setGame_1();
+    fth_s->setGame_1();
+    fth_sp->setGame_1();
     return;
 }
 
@@ -461,10 +466,10 @@ void MainWindow::STOP()
 {
     p->setGame_0();
     g->setGame_0();
-    w->setGame_0();
-    y->setGame_0();
-    s->setGame_0();
-    sp->setGame_0();
+    fth_w->setGame_0();
+    fth_y->setGame_0();
+    fth_s->setGame_0();
+    fth_sp->setGame_0();
     return;
 }
 
@@ -531,7 +536,6 @@ void MainWindow::GameJudge()
 
 
 
-
     if(pac->collidesWithItem(G_) == true && G_->isVisible() == 1 && p->getMode() == "S")
     {
         G_->setVisible(0);
@@ -544,7 +548,7 @@ void MainWindow::GameJudge()
     {
         W_->setVisible(0);
         W_->setPos(535, 349.5);
-        w->setGame_0();
+        fth_w->setGame_0();
         return;
     }
 
@@ -552,7 +556,7 @@ void MainWindow::GameJudge()
     {
         Y_->setVisible(0);
         Y_->setPos(490, 432);
-        y->setGame_0();
+        fth_y->setGame_0();
         return;
     }
 
@@ -560,7 +564,7 @@ void MainWindow::GameJudge()
     {
         Sk_->setVisible(0);
         Sk_->setPos(490, 349.5);
-        s->setGame_0();
+        fth_s->setGame_0();
         return;
     }
 
@@ -568,7 +572,7 @@ void MainWindow::GameJudge()
     {
         Sp_->setVisible(0);
         Sp_->setPos(490, 349.5);
-        sp->setGame_0();
+        fth_sp->setGame_0();
         return;
     }
 
@@ -615,35 +619,33 @@ void MainWindow::TurnNormal()
     {
         W_->setVisible(1);
         Direct_ = "left";
-        w->setDirect(Direct_);
-        w->setGame_1();
+        fth_w->setDirect(Direct_);
+        fth_w->setGame_1();
     }
 
     if(Y_->isVisible() == 0)
     {
         Y_->setVisible(1);
         Direct_ = "down";
-        y->setDirect(Direct_);
-        y->setGame_1();
+        fth_y->setDirect(Direct_);
+        fth_y->setGame_1();
     }
 
     if(Sk_->isVisible() == 0)
     {
         Sk_->setVisible(1);
         Direct_ = "left";
-        s->setDirect(Direct_);
-        s->setGame_1();
+        fth_s->setDirect(Direct_);
+        fth_s->setGame_1();
     }
-    
+
     if(Sp_->isVisible() == 0)
     {
         Sp_->setVisible(1);
         Direct_ = "right";
-        sp->setDirect(Direct_);
-        sp->setGame_1();
+        fth_sp->setDirect(Direct_);
+        fth_sp->setGame_1();
     }
-
-
 
     MODE = "N";
     p->setMode(MODE);
